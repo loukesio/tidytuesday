@@ -8,7 +8,7 @@ You can follow along with my work and updates on [LinkedIn](https://www.linkedin
   <img src="2025/20250401_pokemon/ggtern_pokemon.png" alt="Pokemon ternary plot" width="600"/>
 </a>
 
-## 🔍 [Explore the Pokémon Ternary Plot](2025/20250401_pokemon)
+## 🔍 [Explore the Correlation between ED waiting time and Median Income in US](2025/20250401_pokemon)
 <a href="2025/20250407_Medical">
   <img src="2025/20250407_Medical/ED_waits_by_income_nice_size.png" alt="Pokemon ternary plot" width="600"/>
 </a>
