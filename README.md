@@ -1,4 +1,4 @@
-# 📊 TidyTuesday Visualizations
+# 🦊 TidyTuesday Visualizations
 
 A curated collection of data visualizations and analyses from the [#TidyTuesday](https://github.com/rfordatascience/tidytuesday) weekly social data project.
 
