@@ -15,21 +15,19 @@
 # Output files from R CMD build
 /*.tar.gz
 
-# RStudio project file
-*.Rproj.user/
-
 # Output files from R CMD check
 /*.Rcheck/
 
-# RStudio files
-.Rproj
-
+# RStudio project files
+*.Rproj
+*.Rproj.user
+*.Rproj.user/
 
 # produced vignettes
 vignettes/*.html
 vignettes/*.pdf
 
-# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+# OAuth2 token
 .httr-oauth
 
 # knitr and R markdown default cache directories
@@ -51,4 +49,11 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
-.Rproj.user
+
+# R package: bookdown caching files
+/*_files/
+
+# macOS files
+.DS_Store
+
+

@@ -10,6 +10,7 @@ library(ggtext)           # Rich text rendering in ggplot2
 library(sysfonts)         # Font handling
 library(showtext)         # Render fonts in plots
 library(glue)             # String interpolation
+library(ltc)
 
 #–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 # 🖋 Register Fonts (One-time setup required)
