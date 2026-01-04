@@ -53,6 +53,9 @@ A curated collection of data visualizations and analyses from the [#TidyTuesday]
 #### [Special Indicators Analysis](2025/2025-11-25_SPIndicators/README.md)
 *November 25, 2025*
 
+<a href="2025/2025-11-25_SPIndicators/20251125_treemap.R">
+  <img src="2025/2025-11-25_SPIndicators/20251125_treemap.png" alt="Exploring temporal patterns in economic indicators" width="700"/>
+</a>
 Exploring temporal patterns and correlations in special economic indicators. *(Add visualization once available)*
 
 ---
