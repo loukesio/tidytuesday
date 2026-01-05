@@ -7,6 +7,8 @@ library(patchwork)
 library(scales)
 library(tidytext)
 
+# Register FontAwesome Brands font (icon font); assumes the .ttf file is in your working directory
+font_add(family = "fa-brands", regular = "fa-brands-400.ttf")
 # Load data directly from URLs
 authors <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-12-30/christmas_novel_authors.csv')
 christmas_novel_text <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-12-30/christmas_novel_text.csv')
@@ -164,11 +166,31 @@ if (nrow(similarity_edges) > 0) {
   cat("  Max similarity:", round(max(edges$weight), 3), "\n")
   cat("  Mean similarity:", round(mean(edges$weight), 3), "\n")
 
-  # Create interactive network with BETTER SPACING
-  p2 <- visNetwork(nodes, edges, height = "900px", width = "100%") %>%
+  social_caption <- paste0(
+    "<div style='text-align:center;font-size:11px;color:#555;margin-top:10px;padding:8px;background:#f8f9fa;border-radius:5px;'>",
+    "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'>",
+    "<strong>Source:</strong> TidyTuesday Christmas Novels Dataset<br/>",
+    "<strong>Graphic:</strong> ",
+    "<i class='fab fa-github'></i> loukesio | ",
+    "<i class='fab fa-linkedin'></i> Loukas Theodosiou | ",
+    "<i class='fab fa-bluesky'></i> @bioinformatician.bsky.social",
+    "</div>"
+  )
+
+  # Create interactive network with TITLE, SUBTITLE, and FOOTER
+  p2 <- visNetwork(nodes, edges, height = "900px", width = "100%",
+                   main = list(
+                     text = "Christmas Novel Authors: A Literary Network",
+                     style = "font-family:arial;font-weight:bold;font-size:24px;text-align:center;color:#2c3e50;"
+                   ),
+                   submain = list(
+                     text = "Connected by shared vocabulary patterns • Node size reflects influence",
+                     style = "font-family:arial;font-size:14px;text-align:center;color:#7f8c8d;font-style:italic;"
+                   ),
+                   footer = social_caption) %>%
     visNodes(
       shape = "dot",
-      scaling = list(min = 15, max = 60),  # Bigger range for better visibility
+      scaling = list(min = 15, max = 60),
       font = list(size = 14, face = "arial", color = "#000000"),
       shadow = list(enabled = TRUE, size = 5, x = 3, y = 3),
       borderWidth = 2
@@ -176,14 +198,14 @@ if (nrow(similarity_edges) > 0) {
     visEdges(
       scaling = list(min = 1, max = 5),
       smooth = list(enabled = TRUE, type = "continuous", roundness = 0.5),
-      hoverWidth = 2  # Thicker on hover
+      hoverWidth = 2
     ) %>%
     visLegend(
       main = list(text = "Literary Era",
                   style = "font-family:arial;font-weight:bold;font-size:16px;"),
       position = "right",
       width = 0.2,
-      useGroups = FALSE,  # Don't use groups to avoid mismatch
+      useGroups = FALSE,
       addNodes = list(
         list(label = "Early Romantic (<1830)", shape = "dot",
              size = 20, color = "#1A5B5B"),
@@ -221,19 +243,19 @@ if (nrow(similarity_edges) > 0) {
       multiselect = TRUE
     ) %>%
     visPhysics(
-      enabled = TRUE,  # ENABLE physics for better distribution
+      enabled = TRUE,
       solver = "forceAtlas2Based",
       forceAtlas2Based = list(
-        gravitationalConstant = -80,      # Stronger repulsion - spreads nodes apart
-        centralGravity = 0.005,           # Weak center pull
-        springLength = 150,               # Longer springs = more space
-        springConstant = 0.05,            # Weaker springs
-        damping = 0.6,                    # More damping = settles faster
-        avoidOverlap = 0.8                # Strong overlap avoidance
+        gravitationalConstant = -80,
+        centralGravity = 0.005,
+        springLength = 150,
+        springConstant = 0.05,
+        damping = 0.6,
+        avoidOverlap = 0.8
       ),
       stabilization = list(
         enabled = TRUE,
-        iterations = 2000,                # More iterations for better layout
+        iterations = 2000,
         updateInterval = 50
       )
     ) %>%
@@ -253,10 +275,10 @@ library(htmlwidgets)
 library(webshot2)
 
 # Save the network widget as HTML
-saveWidget(p2, "network.html", selfcontained = TRUE)
+saveWidget(p2, "2025/2025-12-30_XmasNovels/network.html", selfcontained = TRUE)
 
 # Take a screenshot
-webshot("network.html",
+webshot("2025/2025-12-30_XmasNovels/network.html",
         file = "network_snapshot.png",
         vwidth = 1200,    # Width in pixels
         vheight = 900,    # Height in pixels
